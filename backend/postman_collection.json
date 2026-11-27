@@ -1,0 +1,62 @@
+{
+  "info": {
+    "name": "Diary App - Modul 09",
+    "description": "Koleksi uji REST API Diary App (GET, POST, PUT, DELETE)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. GET semua diary",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/diaries"
+      }
+    },
+    {
+      "name": "2. GET satu diary",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/diaries/{{id}}"
+      }
+    },
+    {
+      "name": "3. POST create diary",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Belajar CRUD\",\n  \"diary_date\": \"2026-11-24\",\n  \"body\": \"Hari ini belajar REST API menggunakan Express dan MySQL.\",\n  \"mood\": \" \"\n}"
+        },
+        "url": "{{baseUrl}}/api/diaries"
+      }
+    },
+    {
+      "name": "4. PUT update diary",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Belajar CRUD dan API\",\n  \"diary_date\": \"2026-11-24\",\n  \"body\": \"Hari ini memahami proses update data melalui REST API.\",\n  \"mood\": \" \"\n}"
+        },
+        "url": "{{baseUrl}}/api/diaries/{{id}}"
+      }
+    },
+    {
+      "name": "5. DELETE diary",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/diaries/{{id}}"
+      }
+    }
+  ]
+}
