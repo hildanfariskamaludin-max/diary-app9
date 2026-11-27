@@ -22,6 +22,11 @@ const MOODS = ["😀", "🙂", "😐", "😔", "😠"];
 export default function EditScreen() {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const { id } = useLocalSearchParams<{ id: string }>();
 
@@ -51,6 +56,10 @@ export default function EditScreen() {
       dispatch(fetchDiaries());
     }
   }, [entry, dispatch]);
+
+  if (!mounted) {
+    return null;
+  }
 
   if (!entry) {
     return (

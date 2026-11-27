@@ -17,6 +17,11 @@ import { useAppDispatch, useAppSelector } from "../../src/hooks";
 export default function DetailScreen() {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const { id } = useLocalSearchParams<{ id: string }>();
 
@@ -34,6 +39,10 @@ export default function DetailScreen() {
       dispatch(fetchDiaries());
     }
   }, [entry, dispatch]);
+
+  if (!mounted) {
+    return null;
+  }
 
   if (!entry) {
     return (
